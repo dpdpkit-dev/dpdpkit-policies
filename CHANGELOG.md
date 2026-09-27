@@ -4,6 +4,8 @@ Every entry that adds or changes a pack cites the official notification.
 
 ## Unreleased
 
+## 2026.10.0a1 - 2026-09-27
+
 ### Added
 - Pack `dpdp-rules-2025.v1` — source: G.S.R. 846(E), Digital Personal Data Protection Rules, 2025
   (published 13 Nov 2025). Covers notice links and languages, withdrawal parity, Rule 8 retention
