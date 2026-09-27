@@ -1,0 +1,55 @@
+# Rule-to-code map. Feeds the public "rule to code" docs page (dpdpkit-policies rule-map --format md).
+# Every legal key in a pack must be covered here; tests enforce it.
+rules:
+  - key: commencement.consent_manager
+    source: "DPDP Rules 2025, Rule 4 read with Rule 1(3)"
+    summary: "Consent Manager provisions start one year after publication."
+    used_by: [dpdpkit.policy]
+  - key: commencement.fiduciary_duties
+    source: "DPDP Rules 2025, Rule 1(3); G.S.R. 843(E)"
+    summary: "Most Data Fiduciary duties and principal rights start eighteen months after publication."
+    used_by: [dpdpkit.policy]
+  - key: notice.required_links
+    source: "DPDP Act s.5, s.6(4); DPDP Rules 2025, Rule 3(c)"
+    summary: "A notice must link to withdrawing consent, exercising rights and complaining to the Board."
+    used_by: [dpdpkit.notices]
+  - key: notice.languages
+    source: "DPDP Act s.5(3)"
+    summary: "Principals may read the notice in English or any Eighth Schedule language."
+    used_by: [dpdpkit.notices]
+  - key: consent.withdrawal_parity
+    source: "DPDP Act s.6(4); DPDP Rules 2025, Rule 3(c)(i)"
+    summary: "Withdrawing consent must be as easy as giving it."
+    used_by: [dpdpkit.consent]
+  - key: retention.erasure_pre_notice_hours
+    source: "DPDP Rules 2025, Rule 8(2)"
+    summary: "Tell the principal at least 48 hours before erasure; any login or contact cancels it."
+    used_by: [dpdpkit.retention]
+  - key: retention.min_log_retention_days
+    source: "DPDP Rules 2025, Rule 6(1)(e) and Rule 8(3)"
+    summary: "Keep personal data, traffic data and processing logs for at least one year."
+    used_by: [dpdpkit.retention, dpdpkit.ledger]
+  - key: retention.third_schedule
+    source: "DPDP Rules 2025, Rule 8(1), Third Schedule"
+    summary: "Large e-commerce, online gaming and social media fiduciaries erase after three years without the principal's approach."
+    used_by: [dpdpkit.retention]
+  - key: rights.grievance_max_days
+    source: "DPDP Act s.13; DPDP Rules 2025, Rule 14(3)"
+    summary: "Publish a grievance response period of no more than 90 days."
+    used_by: [dpdpkit.rights]
+  - key: rights.request_max_days
+    source: "DPDP Rules 2025, Rule 14; PIB explainer, 14 Nov 2025"
+    summary: "Rights requests are treated as having the same 90-day ceiling."
+    used_by: [dpdpkit.rights]
+  - key: rights.request_default_target_days
+    source: "dpdpkit default (configurable), below the ceiling"
+    summary: "Target response time for rights requests, shown to the principal."
+    used_by: [dpdpkit.rights]
+  - key: children.age_of_majority
+    source: "DPDP Act s.2(f), s.9; DPDP Rules 2025, Rule 10"
+    summary: "A child is anyone under 18; processing needs verifiable parental consent."
+    used_by: [dpdpkit.guardians]
+  - key: breach.board_detailed_report_hours
+    source: "DPDP Rules 2025, Rule 7(2)(b)"
+    summary: "Send the Board a detailed breach report within 72 hours of becoming aware."
+    used_by: [dpdpkit.incidents]

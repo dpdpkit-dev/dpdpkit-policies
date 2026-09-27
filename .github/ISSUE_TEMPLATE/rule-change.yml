@@ -1,0 +1,28 @@
+name: Rule change
+description: A law, rule or official notification changes a number or adds an obligation
+labels: ["rule-change"]
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Official source
+      description: Link to the gazette notification, MeitY or Data Protection Board publication
+    validations: { required: true }
+  - type: textarea
+    id: change
+    attributes:
+      label: What changes
+      description: Which pack keys change, or which new obligation is introduced
+    validations: { required: true }
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of change
+      options:
+        - Numbers only (new pack version, no code release)
+        - New obligation (needs a dpdpkit-core feature)
+    validations: { required: true }
+  - type: input
+    id: effective
+    attributes:
+      label: Effective date

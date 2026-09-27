@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpdpkit.dev/schema/policy-pack.json",
+  "title": "dpdpkit policy pack",
+  "description": "A versioned set of legal numbers and requirements read by dpdpkit-core. additionalProperties is false everywhere so a typo in a legal key fails validation instead of being silently ignored.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "source", "commencement", "notice", "consent", "retention", "rights", "children", "breach", "overlays"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9-]+\\.v[0-9]+$"},
+    "kind": {"const": "pack"},
+    "source": {"type": "string", "minLength": 1},
+    "published": {"type": "string", "format": "date"},
+    "commencement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["consent_manager", "fiduciary_duties"],
+      "properties": {
+        "immediate": {"type": "string", "format": "date"},
+        "consent_manager": {"type": "string", "format": "date"},
+        "fiduciary_duties": {"type": "string", "format": "date"}
+      }
+    },
+    "notice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_links", "languages"],
+      "properties": {
+        "required_links": {
+          "type": "array",
+          "items": {"enum": ["withdraw", "rights", "board_complaint", "grievance", "contact"]},
+          "uniqueItems": true
+        },
+        "languages": {"type": "array", "items": {"$ref": "#/$defs/locale"}, "minItems": 1, "uniqueItems": true},
+        "default_language": {"$ref": "#/$defs/locale"}
+      }
+    },
+    "consent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["withdrawal_parity"],
+      "properties": {
+        "withdrawal_parity": {"type": "boolean"}
+      }
+    },
+    "retention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["erasure_pre_notice_hours", "min_log_retention_days", "third_schedule"],
+      "properties": {
+        "erasure_pre_notice_hours": {"type": "integer", "minimum": 1},
+        "min_log_retention_days": {"type": "integer", "minimum": 1},
+        "log_retention_in_india_days": {"type": "integer", "minimum": 1},
+        "third_schedule": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["min_users", "inactivity_years"],
+            "properties": {
+              "min_users": {"type": "integer", "minimum": 0},
+              "inactivity_years": {"type": "integer", "minimum": 1}
+            }
+          }
+        },
+        "legal_hold_reasons": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grievance_max_days", "request_default_target_days"],
+      "properties": {
+        "grievance_max_days": {"type": "integer", "minimum": 1},
+        "request_max_days": {"type": "integer", "minimum": 1},
+        "request_default_target_days": {"type": "integer", "minimum": 1}
+      }
+    },
+    "children": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["age_of_majority"],
+      "properties": {
+        "age_of_majority": {"type": "integer", "minimum": 1}
+      }
+    },
+    "breach": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["board_detailed_report_hours"],
+      "properties": {
+        "board_detailed_report_hours": {"type": "integer", "minimum": 1},
+        "cert_in_report_hours": {"type": "integer", "minimum": 1}
+      }
+    },
+    "overlays": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+  },
+  "$defs": {
+    "locale": {"type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]+)*$"}
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpdpkit.dev/schema/policy-overlay.json",
+  "title": "dpdpkit policy overlay",
+  "description": "Sector rules deep-merged into a base pack. The merged result is validated against pack.schema.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "source", "applies_to", "set"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "kind": {"const": "overlay"},
+    "source": {"type": "string", "minLength": 1},
+    "applies_to": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "set": {"type": "object"}
+  }
+}

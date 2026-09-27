@@ -1,0 +1,36 @@
+# DPDP Rules 2025 — base policy pack, version 1.
+# Every number here is read by dpdpkit-core. Nothing else in dpdpkit may hard-code a legal number.
+# Each key is cited in rule_map.yaml. Changes must cite the official notification in CHANGELOG.md.
+id: dpdp-rules-2025.v1
+kind: pack
+source: "G.S.R. 846(E), Digital Personal Data Protection Rules, 2025"
+published: 2025-11-13
+commencement:
+  # Publication date is printed as 13 Nov 2025 on the Gazette masthead; PIB and the eGazette code
+  # point to 14 Nov. Rule 4 starts one year after publication, most other Rules eighteen months after.
+  # Confirm before v0.1 (task POL-09).
+  immediate: 2025-11-13
+  consent_manager: 2026-11-13
+  fiduciary_duties: 2027-05-13
+notice:
+  required_links: [withdraw, rights, board_complaint]
+  languages: [en, hi]            # 22 Eighth Schedule languages are supported locales; packs list those shipped
+  default_language: en
+consent:
+  withdrawal_parity: true
+retention:
+  erasure_pre_notice_hours: 48
+  min_log_retention_days: 365
+  third_schedule:
+    ecommerce:     {min_users: 20000000, inactivity_years: 3}
+    online_gaming: {min_users: 5000000,  inactivity_years: 3}
+    social_media:  {min_users: 20000000, inactivity_years: 3}
+rights:
+  grievance_max_days: 90
+  request_max_days: 90
+  request_default_target_days: 30
+children:
+  age_of_majority: 18
+breach:
+  board_detailed_report_hours: 72
+overlays: []
